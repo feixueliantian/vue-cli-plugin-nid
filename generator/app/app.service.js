@@ -12,13 +12,22 @@ const getGeneratedFilePath = (fileType, options) => {
    *    -> src/comment/index/components/comment-list.vue
    */
 
-  const { [fileType]: fileName, path: filePath } = options;
+  let typeOption = fileType;
+
+  if (fileType === 'style') {
+    typeOption = 'component';
+  }
+
+  const { [typeOption]: fileName, path: filePath } = options;
 
   let fileFullName;
 
   switch (fileType) {
     case 'component':
       fileFullName = `${fileName}.vue`;
+      break;
+    case 'style':
+      fileFullName = path.join('styles', `${fileName}.css`);
       break;
   }
 
