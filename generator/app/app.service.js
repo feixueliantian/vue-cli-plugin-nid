@@ -1,4 +1,5 @@
 const path = require('path');
+const { last } = require('lodash');
 
 const getGeneratedFilePath = (fileType, options) => {
   /**
@@ -52,4 +53,34 @@ const getGeneratedFilePath = (fileType, options) => {
   return path.join(...fileFullPath);
 };
 
-module.exports = { getGeneratedFilePath };
+/**
+ * 获取父辈文件路径
+ */
+const getParentFilePath = (fileType, options) => {
+  // --parent comment/index/comment-index
+  const { parent } = options;
+  let fileExtension = '';
+
+  switch (fileType) {
+    case 'component':
+      fileExtension = '.vue';
+      break;
+  }
+
+  let parentFilePath = [];
+
+  const parentArray = parent.split('/');
+  // 返回数组最后一项
+  const parentFileName = last(parentArray) + fileExtension;
+
+  if (parentArray.length > 1) {
+    parentArray.pop();
+    parentFilePath = ['src', ...parentArray, parentFileName];
+  } else {
+    parentFilePath = ['src', parent, parentFileName];
+  }
+
+  return path.join(...parentFilePath);
+};
+
+module.exports = { getGeneratedFilePath, getParentFilePath };
