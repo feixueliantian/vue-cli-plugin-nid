@@ -23,6 +23,7 @@ const componentGenerator = (api, options) => {
   // 组件名
   const { componentName, componentNamePascalCase } = getComponentName(options);
 
+  // 生成组件文件和组件样式文件
   api.render(
     {
       [generatedComponentPath]: componentTemplatePath,
@@ -34,6 +35,7 @@ const componentGenerator = (api, options) => {
     },
   );
 
+  // 如果指定了父组件，则在父组件中 import 该组件
   if (options.parent) {
     const componentImportStatement = getComponentImportStatement(options);
     const parentComponentPath = getParentFilePath('component', options);

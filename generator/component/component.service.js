@@ -3,7 +3,7 @@ const { camelCase, startCase } = require('lodash');
 const { getGeneratedFileImportPath } = require('../app/app.service');
 
 /**
- * 获取组件莫办文件路径
+ * 获取组件模板文件路径
  */
 const getTemplatePath = () => {
   const componentTemplatePath = path.join('.', 'templates', 'component.ejs');
