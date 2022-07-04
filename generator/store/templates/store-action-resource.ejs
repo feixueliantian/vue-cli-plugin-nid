@@ -68,7 +68,7 @@ export const <%= storeModuleName %>: Module<<%= storeStateName %>, RootState> = 
   actions: {
     async <%= action %>({ commit<% if(pre || post) { %>, dispatch<% } %> }, <%= actionParam %>: <%= actionParamType %> = {}) {
       <% if (pre) { %>
-      dispatch('<%= action %>PreProcess', <%= actionParam %>);
+      await dispatch('<%= action %>PreProcess', <%= actionParam %>);
       <% } else { %>
       commit('setLoading', true);
       <% } %>
@@ -76,7 +76,7 @@ export const <%= storeModuleName %>: Module<<%= storeStateName %>, RootState> = 
       try {
         const response = await apiHttpClient.<%= method %>(`<%= api %>`);
         <% if (post) { %>
-        dispatch('<%= action %>PostProcess', response);
+        await dispatch('<%= action %>PostProcess', response);
         <% } else { %>
         commit('set<%= resourceNameCapitalize %>', response.data);
         commit('setLoading', false);
