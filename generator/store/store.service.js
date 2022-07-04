@@ -22,7 +22,7 @@ const getStoreStateName = (options) => {
  */
 const getStoreModuleName = (options) => {
   const { store: storeName } = options;
-  return upperFirst(camelCase(storeName)) + 'StoreModule';
+  return camelCase(storeName) + 'StoreModule';
 };
 
 /**
