@@ -1,6 +1,9 @@
-const { camelCase, upperFirst } = require('lodash');
+const { camelCase } = require('lodash');
 const path = require('path');
-const { getGeneratedFileImportPath } = require('../app/app.service');
+const {
+  getGeneratedFileImportPath,
+  pascalCase,
+} = require('../app/app.service');
 
 /**
  * 获取 Store 模板文件路径
@@ -14,7 +17,7 @@ const getStoreTemplatePath = () => {
  */
 const getStoreStateName = (options) => {
   const { store: storeName } = options;
-  return upperFirst(camelCase(storeName)) + 'StoreState';
+  return pascalCase(storeName) + 'StoreState';
 };
 
 /**
