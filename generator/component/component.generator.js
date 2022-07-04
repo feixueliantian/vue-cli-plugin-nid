@@ -6,6 +6,7 @@ const {
   getTemplatePath,
   getComponentName,
   getComponentImportStatement,
+  getComponentOptions,
 } = require('./component.service');
 
 const componentGenerator = (api, options) => {
@@ -23,6 +24,9 @@ const componentGenerator = (api, options) => {
   // 组件名
   const { componentName, componentNamePascalCase } = getComponentName(options);
 
+  // 准备选项
+  options = getComponentOptions(options);
+
   // 生成组件文件和组件样式文件
   api.render(
     {
@@ -32,6 +36,7 @@ const componentGenerator = (api, options) => {
     {
       componentName,
       componentNamePascalCase,
+      ...options,
     },
   );
 
