@@ -1,6 +1,8 @@
 const appGenerator = require('./app/app.generator');
 const componentGenerator = require('./component/component.generator');
 const componentGeneratorHook = require('./component/component.generator.hook');
+const storeGenerator = require('./store/store.generator');
+const storeGeneratorHook = require('./store/store.generator.hook');
 
 module.exports = (api, options) => {
   console.log(options);
@@ -10,9 +12,15 @@ module.exports = (api, options) => {
 
   // 生成组件文件和组件样式文件，如果指定了父组件，在父组件中引入子组件
   componentGenerator(api, options);
+
+  // store
+  storeGenerator(api, options);
 };
 
 module.exports.hooks = (api, options) => {
   // 如果指定了父组件，在父组件中注册并使用子组件
   componentGeneratorHook(api, options);
+
+  // store
+  storeGeneratorHook(api, options);
 };
