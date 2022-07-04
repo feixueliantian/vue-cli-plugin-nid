@@ -81,12 +81,12 @@ const getStoreOptions = (options) => {
     action,
     method,
     api,
-    resouce,
+    resource,
     resourceName,
-    resourceNameCapitalize: capitalize(resouceName),
-    resouceType,
+    resourceNameCapitalize: capitalize(resourceName),
+    resourceType,
     resourceTypeName,
-    resouceItemType,
+    resourceItemType,
   };
 };
 
