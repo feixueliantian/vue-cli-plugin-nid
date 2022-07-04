@@ -70,6 +70,10 @@ const getStoreOptions = (options) => {
     actionParam = 'options',
     // 动作参数类型
     actionParamType = pascalCase(action) + 'Options',
+    // 动作预处理
+    pre = false,
+    // 动作后处理
+    post = false,
   } = options;
 
   // comments:Array:CommentListItem
@@ -93,6 +97,8 @@ const getStoreOptions = (options) => {
     resourceItemType,
     actionParam,
     actionParamType,
+    pre,
+    post,
   };
 };
 
